@@ -9,6 +9,7 @@ locals {
     sentinel        = "\t"
     id_length_limit = 0
     id_hash_length  = 5
+    label_key_case      = "title"
   }
 
   # So far, we have decided not to allow overriding replacement, sentinel, or id_hash_length
@@ -35,6 +36,7 @@ locals {
     label_order         = var.label_order == null ? var.context.label_order : var.label_order
     regex_replace_chars = var.regex_replace_chars == null ? var.context.regex_replace_chars : var.regex_replace_chars
     id_length_limit     = var.id_length_limit == null ? var.context.id_length_limit : var.id_length_limit
+    label_key_case      = var.label_key_case == null ? var.context.label_key_case : var.label_key_case
   }
 
 
@@ -48,6 +50,7 @@ locals {
   delimiter       = local.input.delimiter == null ? local.defaults.delimiter : local.input.delimiter
   label_order     = local.input.label_order == null ? local.defaults.label_order : coalescelist(local.input.label_order, local.defaults.label_order)
   id_length_limit = local.input.id_length_limit == null ? local.defaults.id_length_limit : local.input.id_length_limit
+  label_key_case   = local.input.label_key_case == null ? local.defaults.label_key_case : local.input.label_key_case
 
 
   additional_tag_map = merge(var.context.additional_tag_map, var.additional_tag_map)
@@ -73,7 +76,14 @@ locals {
     attributes  = local.id_context.attributes
   }
 
-  generated_tags = { for l in keys(local.tags_context) : title(l) => local.tags_context[l] if length(local.tags_context[l]) > 0 }
+#  generated_tags = { for l in keys(local.tags_context) : title(l) => local.tags_context[l] if length(local.tags_context[l]) > 0 }
+
+generated_tags = {
+    for l in keys(local.tags_context) :
+    local.label_key_case == "upper" ? upper(l) : (
+      local.label_key_case == "lower" ? lower(l) : title(lower(l))
+    ) => local.tags_context[l] if length(local.tags_context[l]) > 0
+  }
 
   id_context = {
     name        = local.name
@@ -112,6 +122,7 @@ locals {
     label_order         = local.label_order
     regex_replace_chars = local.regex_replace_chars
     id_length_limit     = local.id_length_limit
+    label_key_case      = local.label_key_case
   }
 
 }
