@@ -9,7 +9,7 @@ locals {
     sentinel        = "\t"
     id_length_limit = 0
     id_hash_length  = 5
-    label_key_case      = "title"
+    label_key_case      = "lower"
   }
 
   # So far, we have decided not to allow overriding replacement, sentinel, or id_hash_length
