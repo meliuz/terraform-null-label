@@ -90,8 +90,7 @@ locals {
 
 # Change script for lowercase
 generated_tags = {
-    for l in keys(local.tags_context) :
-    local.label_key_case == "upper" ? upper(l) : lower(l)  => local.tags_context[l] if length(local.tags_context[l]) > 0
+    for l in keys(local.tags_context) : lower(l)  => local.tags_context[l] if length(local.tags_context[l]) > 0
   }
 
 
