@@ -10,7 +10,7 @@ locals {
     id_length_limit = 0
     id_hash_length  = 5
     label_key_case  = "lower"
-    label_value_case = "lower"
+    label_value_case = "title"
   }
 
   # So far, we have decided not to allow overriding replacement, sentinel, or id_hash_length
@@ -83,7 +83,7 @@ locals {
 
 generated_tags = {
     for l in keys(local.tags_context) :
-    local.label_key_case == "upper" ? upper(l) : (
+    local.label_key_case == "upper" ? lower(l) : (
       local.label_key_case == "lower" ? lower(l) : title(lower(l))
     ) => local.tags_context[l] if length(local.tags_context[l]) > 0
   }
