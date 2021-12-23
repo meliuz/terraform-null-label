@@ -81,12 +81,20 @@ locals {
 
 #  generated_tags = { for l in keys(local.tags_context) : title(l) => local.tags_context[l] if length(local.tags_context[l]) > 0 }
 
+#generated_tags = {
+#    for l in keys(local.tags_context) :
+#    local.label_key_case == "upper" ? title(l) : (
+#      local.label_key_case == "lower" ? lower(l) : lower(lower(l))
+#    ) => local.tags_context[l] if length(local.tags_context[l]) > 0
+#  }
+
+# Change script for lowercase
 generated_tags = {
     for l in keys(local.tags_context) :
-    local.label_key_case == "upper" ? lower(l) : (
-      local.label_key_case == "lower" ? lower(l) : title(lower(l))
-    ) => local.tags_context[l] if length(local.tags_context[l]) > 0
+    local.label_key_case == "upper" ? upper(l) : lower(l)  => local.tags_context[l] if length(local.tags_context[l]) > 0
   }
+
+
 
   id_context = {
     name        = local.name
