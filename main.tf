@@ -1,3 +1,6 @@
+provider "null" { }
+provider "random" { }
+
 locals {
 
   defaults = {
