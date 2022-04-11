@@ -81,19 +81,19 @@ variable "attributes" {
 }
 
 variable "tags" {
-  type        = map(string)
+  type        = any
   default     = {}
   description = "Additional tags (e.g. `map('BusinessUnit','XYZ')`"
 }
 
 variable "additional_tag_map" {
-  type        = map(string)
+  type        = any
   default     = {}
   description = "Additional tags for appending to tags_as_list_of_maps. Not added to `tags`."
 }
 
 variable "label_order" {
-  type        = list(string)
+  type        = any
   default     = null
   description = <<-EOT
     The naming order of the id output and Name tag.
