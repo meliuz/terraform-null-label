@@ -22,7 +22,6 @@ locals {
     # is an error for all the arguments to coalesce to be empty.
     enabled     = var.enabled == null ? var.context.enabled : var.enabled
     namespace   = var.namespace == null ? var.context.namespace : var.namespace
-    environment = var.environment == null ? var.context.environment : var.environment
     stage       = var.stage == null ? var.context.stage : var.stage
     name        = var.name == null ? var.context.name : var.name
     delimiter   = var.delimiter == null ? var.context.delimiter : var.delimiter

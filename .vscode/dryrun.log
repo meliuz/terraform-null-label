@@ -1,0 +1,3 @@
+curl --retry 5 --fail --silent --retry-delay 1 https://raw.githubusercontent.com/cloudposse/build-harness/master/bin/install.sh | bash -s "cloudposse" "build-harness" "master"
+make: Leaving directory '/github/terraform-null-label'
+ 
