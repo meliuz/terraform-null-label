@@ -3,7 +3,7 @@ variable "context" {
   default = {
     enabled             = true
     namespace           = null
-    environment         = null
+    lower(environment)         = null
     stage               = null
     name                = null
     delimiter           = null
