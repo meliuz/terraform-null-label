@@ -1,0 +1,6 @@
+---
+site_name: terraform-null-label
+nav:
+  - Home: README.md
+plugins:
+  - techdocs-core
