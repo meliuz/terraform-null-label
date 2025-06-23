@@ -1,0 +1,12 @@
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: meliuz/terraform-null-label
+  description: '# terraform-null-label [![Latest Release](https://img.shields.io/github/release/meliuz/terraform-null-label.svg)](https://github.com/meliuz/terraform-...'
+  name: terraform-null-label
+spec:
+  lifecycle: production
+  type: service
